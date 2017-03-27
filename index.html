@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Clock</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <section id="clock">
+            <div id="control-panel">
+              <div id="display">task: 0</div>
+              Task
+              <input id="task" type="number" value="45" placeholder="Enter task time in minutes" min="15" max="60">
+              Rest
+              <input id="rest" type="number" value="15" placeholder="Enter task time in minutes" min="5" max="15">            
+              <button id="start" >start</button>  
+            </div>
+            <span id="seconds" class="seconds-circle"></span>
+            <span id="duration" class="duration-circle"></span>
+          </section>
+        </div>
+        <div class="col-4"></div>                
+      </div>
+    </div>
+    <script>
+      var start = document.getElementById('start');
+      var task = document.getElementById('task');
+      var rest = document.getElementById('rest');
+      var durationTimer = document.getElementById('duration');
+      var secondsTimer = document.getElementById('seconds');
+      var display = document.getElementById('display');
+
+      function displayCount(value, phase){
+
+        var time;
+
+        if (value - 10 < 0){
+          time = "00:0" + value;
+        }
+        else if (value - 10 > -1 && value - 60 < 0) {
+          time = "00:" + value;
+        }
+        else if (value >= 60 && value < 600){
+          time = "0" + String(Math.floor(value/60)) + ":";
+          var mod = value % 60;
+          if (mod < 10){
+            time += "0" + String(mod);
+          } else {
+            time += mod;
+          }  
+        }
+        else {
+          time = String(Math.floor(value/60)) + ":";
+          var mod = value % 60;
+          if (mod < 10){
+            time += "0" + String(mod);
+          } else {
+            time += mod;
+          }  
+        }
+
+        display.innerHTML = phase + ': ' + time;
+      }
+
+      var timekeeper = {
+        counter: 1,
+        task: {
+          duration: 10,
+          output: displayCount,
+          background: 'green'
+        },
+        rest: {
+          duration: 5,
+          output: displayCount,
+          background: 'blue',
+        },
+        phases: ['task', 'rest'],
+        timer: undefined
+      }
+      secondsTimer.style.opacity = "0.6";
+      var timer = pomodoro(timekeeper)
+      var redraw1;
+      var redraw2;
+
+      start.addEventListener("click", function(){
+        timer.setDurations(task.value, rest.value);
+        timer.start();
+      })
+
+      function pomodoro(timekeeper) {
+
+        var obj = Object.assign({}, timekeeper);
+        var phase = obj.phases.shift();
+        var _initial = obj.counter;
+        obj.phases.push(phase);
+
+        return {
+          setDurations: function setDurations(t, r){
+            obj.task.duration = Number(t) * 60;
+            obj.rest.duration = Number(r) * 60;
+          },
+          start: function start(){
+            display.innerHTML = 'task: 1';
+            obj.counter = _initial;
+            durationTimer.style.backgroundColor = obj[phase].background;
+            secondsTimer.style.backgroundColor = obj[phase].background;
+
+            
+            if (obj.timer !== undefined){
+              clearInterval(obj.timer);
+              clearInterval(redraw1);
+              clearInterval(redraw2);
+            }
+            redraw1 = redrawCircle(durationTimer, obj[phase].duration, 280);
+            redraw2 = redrawCircle(secondsTimer, 1, 320);
+            obj.timer = setInterval(function timerFn() {
+              
+              if (obj.counter >= obj[phase].duration){
+                phase = obj.phases.shift();
+                obj.phases.push(phase);
+                obj.counter = 0;
+                console.log(phase, obj[phase].duration)
+                clearInterval(redraw1);
+                durationTimer.style.backgroundColor = obj[phase].background;
+                secondsTimer.style.backgroundColor = obj[phase].background;
+                redraw1 = redrawCircle(durationTimer, obj[phase].duration, 280);
+              }
+
+              obj.counter++;
+              clearInterval(redraw2);
+              redraw2 = redrawCircle(secondsTimer, 1, 320);
+              obj[phase].output(obj.counter, phase);
+              return timerFn;
+            }, 1000);
+          }
+        }
+      }
+
+      function redrawCircle(el, duration, size){  
+        var increment = (size / duration) / 250;
+        var offset = 0;
+        el.style.backgroundColor = 'none';
+        var redraw = setInterval(function(){
+          el.style.height = offset + 'px';
+          el.style.width = offset + 'px';
+          offset += increment;
+        }, 4)
+        
+        return redraw;
+      }
+
+    </script>
+  </body>
+</html>
