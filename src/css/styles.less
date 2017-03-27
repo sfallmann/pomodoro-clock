@@ -7,7 +7,13 @@ html {
   min-width: 320px;
 }
 
+body {
+  background-color: #36454f;
+}
 
+body *{
+  border: 1px solid black;
+}
 .container, .container-fluid {
   width: 100%;
   padding: 0;
@@ -52,6 +58,7 @@ html {
   position: fixed;
   z-index: 12;
   border-radius: 990px 990px 990px 990px;  
+  .outline;
 }
 
 .seconds-circle {
@@ -67,6 +74,28 @@ html {
   z-index: 10;
   border-radius: 990px 990px 990px 990px;  
 
+}
+
+#control-panel {
+  text-align: center;
+  margin: auto;
+  color: #ffffff;  
+}
+
+#time-segment {
+  background-color: #000000;
+  border: 4px solid #8a8a8a;
+}
+
+.time-display{
+  transform: rotateZ(90deg);
+  font-size: 6em;
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 4px;
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0,0,0,0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0,0,0,0.75);
 }
 
 
