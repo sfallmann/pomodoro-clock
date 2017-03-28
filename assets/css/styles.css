@@ -5,10 +5,7 @@ html {
   min-width: 320px;
 }
 body {
-  background-color: #36454f;
-}
-body * {
-  border: 1px solid black;
+  background: url('../../assets/img/random_grey_variations.png') repeat;
 }
 .container,
 .container-fluid {
@@ -31,46 +28,48 @@ body * {
 .img {
   display: block;
   margin: auto;
+  text-align: center;
   max-width: 100%;
 }
 .btn {
   cursor: pointer;
 }
-.duration-circle {
-  width: 0px;
-  height: 0px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: block;
-  position: fixed;
-  z-index: 12;
-  border-radius: 990px 990px 990px 990px;
-  border: 1px solid black;
-}
-.seconds-circle {
-  width: 0px;
-  height: 0px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: block;
-  position: fixed;
-  z-index: 10;
-  border-radius: 990px 990px 990px 990px;
+#clock {
+  border-radius: 10px;
+  border: 5px solid  #331a00;
+  background-color: black;
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
 }
 #control-panel {
-  text-align: center;
   margin: auto;
+  text-align: center;
   color: #ffffff;
 }
-#time-segment {
-  background-color: #000000;
-  border: 4px solid #8a8a8a;
+#clock-display {
+  margin: auto;
+  text-align: center;
+  margin: 10px 0 10px 0;
+  background-color: #331a00;
+  border: 6px inset #2a2a2a;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+}
+#lights-display {
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  margin: auto;
+  text-align: center;
+  height: 200px;
+  background: url('../../assets/img/grey-texture.jpg');
+  border: 6px inset #373737;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
 }
 .time-display {
   transform: rotateZ(90deg);
@@ -78,11 +77,63 @@ body * {
   color: #000000;
   background-color: #ffffff;
   border-radius: 4px;
+  padding: 0 3px 0 3px;
   -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
   box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
 }
-@media only screen and (min-width: 768px) {
+.light-wrapper {
+  display: inline-block;
+}
+.light-cover {
+  position: absolute;
+  z-index: 100;
+  width: 150px;
+  height: 60px;
+  opacity: .2;
+  border-radius: 7px;
+  background: url('../../assets/img/light_texture.jpg');
+}
+.light {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  font-size: 2em;
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  border-radius: 7px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 5px;
+}
+#work-light {
+  width: 150px;
+  border: 5px outset #532900;
+  background-color: #773c00;
+  color: #532900;
+}
+#rest-light {
+  width: 150px;
+  border: 5px outset #004200;
+  background-color: #005900;
+  color: #004200;
+}
+#work-light.light-on {
+  color: #fff0e1;
+  background-color: #fa5505;
+  border-color: #773c00;
+}
+#rest-light.light-on {
+  color: #ceffce;
+  background-color: #00c400;
+  border-color: #005900;
+}
+.light-on {
+  -webkit-box-shadow: 5px 9px 17px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 9px 17px -3px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 9px 17px -3px rgba(0, 0, 0, 0.75);
+}
+@media only screen and (min-width: 900px) {
   .container {
     padding: 125px 125px 0 125px;
   }
@@ -122,11 +173,28 @@ body * {
   .col-12 {
     width: 100%;
   }
+  #clock {
+    width: 600px;
+    margin: auto;
+    text-align: center;
+  }
+  #lights-display {
+    height: 100px;
+  }
 }
 /* less rules */
 .outline {
   border: 1px solid black;
 }
-.centered-element {
+.centered {
   margin: auto;
+  text-align: center;
+}
+.shadowed {
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+}
+.open-sans-font {
+  font-family: 'Open Sans', sans-serif;
 }
