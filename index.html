@@ -6,6 +6,7 @@
     <title>Pomodoro Clock</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
   <body>
     <div class="container">
@@ -34,11 +35,20 @@
               <span id="sec-1s" class="time-display">0</span>
             </div>          
             <div id="control-panel">
-              Task
-              <input id="work" type="number" value="45" placeholder="Enter work time in seconds" >
-              Rest
-              <input id="rest" type="number" value="15" placeholder="Enter rest time in seconds" >            
-              <button id="start" >start</button>  
+              <div class="row">
+                <div class="col-12 panel-subsection">
+                  <input id="reset" class="btn" type="button" value="RESET">
+                  <label>Work <span id="work" class="time-input">10</span></label>
+                  <button id="work-btn-up" class="controls fa fa-caret-up"></button>
+                  <button id="work-btn-down" class="controls fa fa-caret-down"></button>             
+                </div>
+                <div class="col-12 panel-subsection">
+                  <input id="start" class="btn" type="button" value="START">   
+                  <label>Rest <span id="rest" class="time-input">05</span></label>
+                  <button id="rest-btn-up" class="controls fa fa-caret-up"></button>
+                  <button id="rest-btn-down" class="controls fa fa-caret-down"></button>                     
+                </div>                
+              </div>
             </div>
           </section>
         </div>               
@@ -54,6 +64,7 @@
       var sec1s = document.getElementById('sec-1s');
       var workLight = document.getElementById('work-light');
       var restLight = document.getElementById('rest-light');
+      var controls = document.getElementById('control-panel');
 
       function displayTime(arr){
         min10s.innerHTML = arr[0];
@@ -117,12 +128,33 @@
           restLight.classList.toggle('light-on');
         }
       }
-      var timer = pomodoro(timekeeper)
 
-      start.addEventListener("click", function(){
-        timer.setDurations(work.value, rest.value);
+      var timer = pomodoro(timekeeper);
+
+      controls.addEventListener("click", controlRouter);
+
+
+      function controlRouter(event){
+        var id = event.target.id;
+
+        switch(event.target.id){
+          case "start":
+            startTimer(10, 5);
+            break;
+          case "reset":
+            resetTimer();
+            break;
+        }        
+      }
+
+      function startTimer(work, rest) {
+        timer.setDurations(work, rest);
         timer.start();
-      })
+      }
+
+      function resetTimer() {
+        timer.reset();
+      }    
 
       function pomodoro(timekeeper) {
 
@@ -162,6 +194,18 @@
               displayTime(parseCounter(obj.counter));
               return timerFn;
             }, 1000);
+          },
+          reset: function reset(){
+            obj.counter = _initial;
+            
+            if (obj.timer !== undefined){
+              clearInterval(obj.timer);
+            }
+
+            displayTime(['0', '0', '0', '0']);
+
+            restLight.classList.remove('light-on');
+            workLight.classList.remove('light-on');            
           }
         }
       }

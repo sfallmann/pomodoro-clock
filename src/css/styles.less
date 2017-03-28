@@ -39,7 +39,9 @@ body {
 }
 
 .btn {
-  cursor: pointer;
+  margin-right: 20px;
+  border-radius: 10px;
+  font-size: .9em;
 }
 
 #clock {
@@ -50,8 +52,9 @@ body {
 }
 
 #control-panel {
-  .centered;
+  height: 140px;
   color: #ffffff;  
+  font-size: 1.5em;
 }
 
 #clock-display {
@@ -75,14 +78,8 @@ body {
 }
 
 .time-display{
-  
-  transform: rotateZ(90deg);
   font-size: 6em;
-  color: #000000;
-  background-color: #ffffff;
-  border-radius: 4px;
-  padding: 0 3px 0 3px;
-  .shadowed;
+  .time;
 }
 
 .light-wrapper {
@@ -143,6 +140,24 @@ body {
   box-shadow: 5px 9px 17px -3px rgba(0,0,0,0.75);  
 }
 
+
+
+.panel-subsection {
+  .centered;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.time-input {
+  .time;
+  font-size: 1.5em;
+}
+
+.controls {
+  padding: 0;
+  margin: 0;
+}
+
 @media only screen and (min-width: 900px) {
 
 
@@ -171,7 +186,7 @@ body {
   #lights-display { 
     height: 100px;
   }
-
+  
 }
 
 /* less rules */
@@ -199,4 +214,12 @@ body {
 
 .open-sans-font {
   font-family: 'Open Sans', sans-serif;
+}
+
+.time {
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 0 3px 0 3px;
+  .shadowed;  
 }

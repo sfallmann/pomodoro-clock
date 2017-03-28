@@ -32,7 +32,9 @@ body {
   max-width: 100%;
 }
 .btn {
-  cursor: pointer;
+  margin-right: 20px;
+  border-radius: 10px;
+  font-size: .9em;
 }
 #clock {
   border-radius: 10px;
@@ -43,9 +45,9 @@ body {
   box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
 }
 #control-panel {
-  margin: auto;
-  text-align: center;
+  height: 140px;
   color: #ffffff;
+  font-size: 1.5em;
 }
 #clock-display {
   margin: auto;
@@ -72,7 +74,6 @@ body {
   border-radius: 5px 5px 0 0;
 }
 .time-display {
-  transform: rotateZ(90deg);
   font-size: 6em;
   color: #000000;
   background-color: #ffffff;
@@ -132,6 +133,26 @@ body {
   -webkit-box-shadow: 5px 9px 17px -3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 9px 17px -3px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 9px 17px -3px rgba(0, 0, 0, 0.75);
+}
+.panel-subsection {
+  margin: auto;
+  text-align: center;
+  padding: 0;
+  margin-top: 20px;
+}
+.time-input {
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 0 3px 0 3px;
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  font-size: 1.5em;
+}
+.controls {
+  padding: 0;
+  margin: 0;
 }
 @media only screen and (min-width: 900px) {
   .container {
@@ -197,4 +218,13 @@ body {
 }
 .open-sans-font {
   font-family: 'Open Sans', sans-serif;
+}
+.time {
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 0 3px 0 3px;
+  -webkit-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -1px -6px 49px -6px rgba(0, 0, 0, 0.75);
 }
