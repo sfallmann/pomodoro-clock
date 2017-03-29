@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Clock</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Stardos+Stencil" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
@@ -38,23 +38,35 @@
               <div class="row">
                 <div class="col-12 panel-subsection">
                   <input id="reset" class="btn" type="button" value="RESET">
-                  <label>Work <span id="work" class="time-input">10</span></label>
+                  <label>Work</label><span id="work" class="time-input">10</span>
                   <button id="work-btn-up" class="controls fa fa-caret-up"></button>
                   <button id="work-btn-down" class="controls fa fa-caret-down"></button>             
                 </div>
                 <div class="col-12 panel-subsection">
                   <input id="start" class="btn" type="button" value="START">   
-                  <label>Rest <span id="rest" class="time-input">05</span></label>
+                  <label>Rest</label><span id="rest" class="time-input">05</span>
                   <button id="rest-btn-up" class="controls fa fa-caret-up"></button>
                   <button id="rest-btn-down" class="controls fa fa-caret-down"></button>                     
                 </div>                
               </div>
             </div>
           </section>
+          <audio id="whistle" class="hide">
+            <source src="assets/audio/factory_whiste..mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
         </div>               
       </div>
     </div>
     <script>
+
+      var whistle = document.getElementById("whistle"); 
+
+      function playWhistle() { 
+          whistle.currentTime = 0;
+          whistle.play(); 
+      } 
+
       var start = document.getElementById('start');
       var work = document.getElementById('work');
       var rest = document.getElementById('rest');
@@ -65,6 +77,8 @@
       var workLight = document.getElementById('work-light');
       var restLight = document.getElementById('rest-light');
       var controls = document.getElementById('control-panel');
+
+      console.log(start);
 
       function displayTime(arr){
         min10s.innerHTML = arr[0];
@@ -124,6 +138,7 @@
         phases: ['work', 'rest'],
         timer: undefined,
         cb: function(){
+          playWhistle();
           workLight.classList.toggle('light-on');
           restLight.classList.toggle('light-on');
         }
@@ -133,22 +148,54 @@
 
       controls.addEventListener("click", controlRouter);
 
-
       function controlRouter(event){
         var id = event.target.id;
+        var value;
 
         switch(event.target.id){
           case "start":
-            startTimer(10, 5);
+            
+            startTimer(work.innerHTML, rest.innerHTML);
+            start.disabled = true;
             break;
           case "reset":
             resetTimer();
+            start.disabled = false;
             break;
+          case "work-btn-up":
+            value = Number(document.querySelector("#work").innerHTML);
+            if(value < 60){
+              value = String(value + 1);
+              document.querySelector("#work").innerHTML = value.length > 1 ? value : "0" + String(value);
+            }
+            break;
+          case "rest-btn-up":
+            value = Number(document.querySelector("#rest").innerHTML);
+            if(value < 60){
+              value = String(value + 1);
+              document.querySelector("#rest").innerHTML = value.length > 1 ? value : "0" + String(value);
+            }
+            break;   
+          case "work-btn-down":
+            value = Number(document.querySelector("#work").innerHTML);
+            if(value > 1){
+              value = String(value - 1);
+              document.querySelector("#work").innerHTML = value.length > 1 ? value : "0" + String(value);
+            }
+            break;
+          case "rest-btn-down":
+            value = Number(document.querySelector("#rest").innerHTML);
+            if(value > 1){
+              value = String(value - 1);
+              document.querySelector("#rest").innerHTML = value.length > 1 ? value : "0" + String(value);
+            }
+            break;                       
         }        
       }
 
       function startTimer(work, rest) {
         timer.setDurations(work, rest);
+        playWhistle();
         timer.start();
       }
 
@@ -209,6 +256,7 @@
           }
         }
       }
+
 
     </script>
   </body>

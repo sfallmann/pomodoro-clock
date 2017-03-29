@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  background: url('../../assets/img/random_grey_variations.png') repeat;
+  background: url('../../assets/img/dark_brick_wall.png') repeat;
 }
 
 .container, .container-fluid {
@@ -42,6 +42,25 @@ body {
   margin-right: 20px;
   border-radius: 10px;
   font-size: .9em;
+  .stencil-font;
+  .shadowed;
+}
+
+input[type="button"]:hover {
+
+  cursor: pointer;
+}
+
+#reset {
+  width: 90px;
+  background-color: #a40000;
+  color: #ffffff;
+}
+
+#start {
+  width: 90px;
+  background-color: #006a00;
+  color: #ffffff;
 }
 
 #clock {
@@ -55,31 +74,40 @@ body {
   height: 140px;
   color: #ffffff;  
   font-size: 1.5em;
+  .shadowed;
+  .grey-black;
 }
 
 #clock-display {
   .centered;
   margin: 10px 0 10px 0;
-  background-color: #331a00;
+  .gradient-grey;
   border: 6px inset #2a2a2a;
-  border-top: 0;
   border-radius: 0 0 5px 5px;  
   .shadowed;  
 }
 
+label {
+  .stencil-font;
+  margin-right: 10px;
+}
+
 #lights-display {
+  .stencil-font;
   .shadowed;  
   .centered;
   height: 200px;
   background: url('../../assets/img/grey-texture.jpg');
   border: 6px inset #373737;
-  border-bottom: 0;
+
   border-radius: 5px 5px 0 0;
 }
 
 .time-display{
   font-size: 6em;
   .time;
+  border: 4px solid #000000;
+  border-radius: 6px;
 }
 
 .light-wrapper {
@@ -103,7 +131,6 @@ body {
   font-size: 2em;
   .shadowed;
   border-radius: 7px;
-  .open-sans-font;
   padding: 5px;
 }
 
@@ -151,11 +178,23 @@ body {
 .time-input {
   .time;
   font-size: 1.5em;
+  margin-left: 10px;
+  padding-bottom: 5px;
 }
 
 .controls {
   padding: 0;
   margin: 0;
+}
+
+#rest {
+  margin-left: 18px;
+}
+
+button {
+  height: 40px;
+  width: 40px;
+  .shadowed;
 }
 
 @media only screen and (min-width: 900px) {
@@ -212,8 +251,8 @@ body {
   box-shadow: inset -1px -6px 49px -6px rgba(0,0,0,0.75);
 }
 
-.open-sans-font {
-  font-family: 'Open Sans', sans-serif;
+.stencil-font {
+  font-family: 'Stardos Stencil', cursive;
 }
 
 .time {
@@ -222,4 +261,38 @@ body {
   border-radius: 4px;
   padding: 0 3px 0 3px;
   .shadowed;  
+}
+
+.hide {
+  display: none;
+}
+
+.gradient-grey {
+/* IE10+ */ 
+background-image: -ms-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #000000), color-stop(50, #FFFFFF), color-stop(100, #000000));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
+
+/* W3C Markup */ 
+background-image: linear-gradient(to right, #000000 0%, #FFFFFF 50%, #000000 100%);
+}
+
+.grey-black {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
+background: rgb(181,189,200); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+
 }
