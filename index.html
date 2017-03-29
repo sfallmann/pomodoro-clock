@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Clock</title>
     <link href="https://fonts.googleapis.com/css?family=Stardos+Stencil" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />    
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
   <body>
     <div class="container">
@@ -36,18 +36,28 @@
             </div>          
             <div id="control-panel">
               <div class="row">
-                <div class="col-12 panel-subsection">
-                  <input id="reset" class="btn" type="button" value="RESET">
-                  <label>Work</label><span id="work" class="time-input">10</span>
-                  <button id="work-btn-up" class="controls fa fa-caret-up"></button>
-                  <button id="work-btn-down" class="controls fa fa-caret-down"></button>             
+                <div class="col-4 panel-subsection">
+                  <div class="col-12">
+                    <input id="reset" class="btn" type="button" value="RESET">
+                  </div>
+                  <div class="col-12">
+                    <input id="start" class="btn" type="button" value="START"> 
+                  </div>
+                </div>  
+                <div class="col-8 panel-subsection">
+                  <div class="col-12">
+                    <div class="label">Work</div>
+                    <div id="work" class="time-input">10</div>
+                    <button id="work-btn-up" class="fa fa-caret-left"></button>
+                    <button id="work-btn-down" class="fa fa-caret-right"></button>     
+                  </div>
+                  <div class="col-12">
+                    <div class="label">Rest</div>
+                    <div id="rest" class="time-input">05</div>
+                    <button id="rest-btn-up" class="fa fa-caret-left"></button>
+                    <button id="rest-btn-down" class="fa fa-caret-right"></button>   
+                  </div>
                 </div>
-                <div class="col-12 panel-subsection">
-                  <input id="start" class="btn" type="button" value="START">   
-                  <label>Rest</label><span id="rest" class="time-input">05</span>
-                  <button id="rest-btn-up" class="controls fa fa-caret-up"></button>
-                  <button id="rest-btn-down" class="controls fa fa-caret-down"></button>                     
-                </div>                
               </div>
             </div>
           </section>

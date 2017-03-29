@@ -11,6 +11,10 @@ body {
   background: url('../../assets/img/dark_brick_wall.png') repeat;
 }
 
+body * {
+  border: 1px solid black;
+}
+
 .container, .container-fluid {
   width: 100%;
   padding: 0;
@@ -38,30 +42,9 @@ body {
   max-width: 100%;
 }
 
-.btn {
-  margin-right: 20px;
-  border-radius: 10px;
-  font-size: .9em;
-  .stencil-font;
-  .shadowed;
-}
 
-input[type="button"]:hover {
 
-  cursor: pointer;
-}
-
-#reset {
-  width: 90px;
-  background-color: #a40000;
-  color: #ffffff;
-}
-
-#start {
-  width: 90px;
-  background-color: #006a00;
-  color: #ffffff;
-}
+/* The "clock" */
 
 #clock {
   border-radius: 10px;
@@ -70,13 +53,14 @@ input[type="button"]:hover {
   .shadowed;
 }
 
-#control-panel {
-  height: 140px;
-  color: #ffffff;  
-  font-size: 1.5em;
-  .shadowed;
-  .grey-black;
+
+
+input[type="button"]:hover {
+
+  cursor: pointer;
 }
+
+/* Top section of the clock - time display and lights */
 
 #clock-display {
   .centered;
@@ -85,11 +69,6 @@ input[type="button"]:hover {
   border: 6px inset #2a2a2a;
   border-radius: 0 0 5px 5px;  
   .shadowed;  
-}
-
-label {
-  .stencil-font;
-  margin-right: 10px;
 }
 
 #lights-display {
@@ -167,38 +146,105 @@ label {
   box-shadow: 5px 9px 17px -3px rgba(0,0,0,0.75);  
 }
 
+/* The control panel - bottom section of clock */
 
+#control-panel {
+  color: #ffffff;  
+  font-size: 1.5em;
+  .shadowed;
+  .grey-black;
+}
 
 .panel-subsection {
   .centered;
-  padding: 0;
-  margin-top: 20px;
+  margin-top: 10px;
+  min-height: 80px;
+  
 }
 
-.time-input {
-  .time;
-  font-size: 1.5em;
-  margin-left: 10px;
-  padding-bottom: 5px;
+.panel-subsection div {
+  display: inline-block;
+}
+.label {
+  font-size: 1.25em;
+  color: #000000;
+  background-color: #ffffff;
+  padding: 2px;
+  width: 72px;
 }
 
-.controls {
+.nopad-nomargin {
   padding: 0;
   margin: 0;
 }
 
-#rest {
-  margin-left: 18px;
+.time-input {
+  .time;
+  font-size: 1.25em;
+  width: 40px;
+}
+
+/* Subsection of the control panel containing the time input and a button 
+
+
+
+label {
+  .stencil-font;
+  margin-right: 10px;
+}
+
+#reset {
+  width: 90px;
+  background-color: #a40000;
+  color: #ffffff;
+}
+
+#start {
+  width: 90px;
+  background-color: #006a00;
+  color: #ffffff;
+}
+
+
+
+
+.controls {
+  display: block;
 }
 
 button {
-  height: 40px;
-  width: 40px;
+  height: 25px;
+  width: 30px;
+  .shadowed;
+  margin: 5px;
+}
+
+.time-buttons {
+  display: inline-block;
+  width: 50px;
+  height: 60px;
+}
+
+.btn {
+  margin-right: 20px;
+  border-radius: 10px;
+  font-size: .9em;
+  .stencil-font;
   .shadowed;
 }
 
+*/
+
 @media only screen and (min-width: 900px) {
 
+  #clock{
+    width: 600px;
+    .centered;
+  }
+
+  #lights-display { 
+    height: 100px;
+  }
 
   .container {
     padding: @container-pad @container-pad 0 @container-pad;
@@ -216,15 +262,6 @@ button {
   .col-10 {width: 83.33%;}
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
-
-  #clock{
-    width: 600px;
-    .centered;
-  }
-
-  #lights-display { 
-    height: 100px;
-  }
   
 }
 
