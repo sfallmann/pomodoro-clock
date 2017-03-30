@@ -13,9 +13,10 @@ body {
 }
 
 .container, .container-fluid {
+
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin: 20px 0 0 0;
 }
 
 .row::after {
@@ -40,6 +41,10 @@ body {
 }
 
 
+body , .container .col-12:first-of-type {
+  margin: 0;
+  padding: 0;
+}
 
 /* The "clock" */
 
@@ -179,6 +184,7 @@ input[type="button"]:hover {
 .btn {
   font-size: 1.1em;
   width: 100%;
+  max-width: 300px;
   padding: 5px 0 5px 0;
   color: white;
   .orbitron-font;
