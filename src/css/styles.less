@@ -9,10 +9,7 @@ html {
 
 body {
   background: url('../../assets/img/dark_brick_wall.png') repeat;
-}
-
-body * {
-  border: 1px solid black;
+  .no-select;
 }
 
 .container, .container-fluid {
@@ -47,10 +44,11 @@ body * {
 /* The "clock" */
 
 #clock {
-  border-radius: 10px;
-  border: 5px solid  #331a00;
+  border-radius: 50px 50px 50px 50px;
   background-color: black;
   .shadowed;
+  border: 10px groove #ffffff;
+  .orbitron-font;
 }
 
 
@@ -64,29 +62,34 @@ input[type="button"]:hover {
 
 #clock-display {
   .centered;
+  .orbitron-font;
   margin: 10px 0 10px 0;
-  .gradient-grey;
-  border: 6px inset #2a2a2a;
+  background: #000000;
   border-radius: 0 0 5px 5px;  
   .shadowed;  
 }
 
+.time-display{
+  .time;
+  display: inline-block;
+  font-size: 5.25em;
+  padding: 0;
+  min-width: 73px;  
+}
+
+.time-display:nth-of-type(3n+0) {
+  min-width: 20px;
+}
+
 #lights-display {
-  .stencil-font;
   .shadowed;  
   .centered;
   height: 200px;
-  background: url('../../assets/img/grey-texture.jpg');
-  border: 6px inset #373737;
-
-  border-radius: 5px 5px 0 0;
-}
-
-.time-display{
-  font-size: 6em;
-  .time;
-  border: 4px solid #000000;
-  border-radius: 6px;
+  background: #FAEBD7;
+  border-radius: 50px 50px 0 0;
+  border: 2px 3px 3px 5px;
+  border-style: inset;
+  border-color: #ffffff;
 }
 
 .light-wrapper {
@@ -150,27 +153,66 @@ input[type="button"]:hover {
 
 #control-panel {
   color: #ffffff;  
-  font-size: 1.5em;
+  font-size: 1em;
   .shadowed;
-  .grey-black;
+  background: #FAEBD7;
+  border-radius: 0 0 50px 50px;
 }
 
 .panel-subsection {
   .centered;
   margin-top: 10px;
   min-height: 80px;
-  
+  padding: 0;
 }
 
 .panel-subsection div {
   display: inline-block;
 }
+
+
+.col-8 .col-12:first-of-type  {
+  border-bottom: 5px ridge #C8BCAC;
+
+}
+
+.btn {
+  font-size: 1.1em;
+  width: 100%;
+  padding: 5px 0 5px 0;
+  color: white;
+  .orbitron-font;
+  .shadowed;
+  border-radius: 2px;
+  min-height: 40px;
+}
+
+#reset {
+  background: #cc0000;
+}
+
+#start {
+  background: #008000;
+}
+
+button {
+  border-radius: 100px;
+  min-height: 40px;
+  min-width: 40px;
+  border: 3px outset #C8BCAC;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .label {
-  font-size: 1.25em;
+  vertical-align: bottom;
+  display: inline-block;
+  font-size: 2em;
+  font-weight: bold;
   color: #000000;
-  background-color: #ffffff;
-  padding: 2px;
-  width: 72px;
+  min-width: 110px;
 }
 
 .nopad-nomargin {
@@ -180,60 +222,17 @@ input[type="button"]:hover {
 
 .time-input {
   .time;
-  font-size: 1.25em;
-  width: 40px;
-}
-
-/* Subsection of the control panel containing the time input and a button 
-
-
-
-label {
-  .stencil-font;
-  margin-right: 10px;
-}
-
-#reset {
-  width: 90px;
-  background-color: #a40000;
-  color: #ffffff;
-}
-
-#start {
-  width: 90px;
-  background-color: #006a00;
-  color: #ffffff;
-}
-
-
-
-
-.controls {
-  display: block;
-}
-
-button {
-  height: 25px;
-  width: 30px;
-  .shadowed;
-  margin: 5px;
-}
-
-.time-buttons {
-  display: inline-block;
-  width: 50px;
-  height: 60px;
-}
-
-.btn {
+  .centered;
+  vertical-align: middle;
+  display: inline-block;  
+  font-size: 1.5em;
+  min-height: 40px;
+  min-width: 40px;
+  width: 60px;
   margin-right: 20px;
-  border-radius: 10px;
-  font-size: .9em;
-  .stencil-font;
-  .shadowed;
+  border-radius: 5px;
 }
 
-*/
 
 @media only screen and (min-width: 900px) {
 
@@ -245,6 +244,11 @@ button {
   #lights-display { 
     height: 100px;
   }
+
+  .panel-subsection:last-of-type {
+    border-left: 5px ridge #C8BCAC;
+    border-radius: 0 0 50px 0;
+  } 
 
   .container {
     padding: @container-pad @container-pad 0 @container-pad;
@@ -265,11 +269,14 @@ button {
   
 }
 
-/* less rules */
+/* variables */
 
 @start-background: white;
 @task-background: green;
 @rest-background: yellow;
+
+/* mixins */
+
 
 @container-pad: 125px;
 
@@ -288,48 +295,22 @@ button {
   box-shadow: inset -1px -6px 49px -6px rgba(0,0,0,0.75);
 }
 
-.stencil-font {
-  font-family: 'Stardos Stencil', cursive;
+.orbitron-font {
+  font-family: 'Orbitron', sans-serif;
 }
 
 .time {
-  color: #000000;
-  background-color: #ffffff;
-  border-radius: 4px;
+  color: #ff0000;
+  background-color: #000000;
   padding: 0 3px 0 3px;
   .shadowed;  
 }
 
-.hide {
-  display: none;
-}
-
-.gradient-grey {
-/* IE10+ */ 
-background-image: -ms-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
-
-/* Mozilla Firefox */ 
-background-image: -moz-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
-
-/* Opera */ 
-background-image: -o-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
-
-/* Webkit (Safari/Chrome 10) */ 
-background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #000000), color-stop(50, #FFFFFF), color-stop(100, #000000));
-
-/* Webkit (Chrome 11+) */ 
-background-image: -webkit-linear-gradient(left, #000000 0%, #FFFFFF 50%, #000000 100%);
-
-/* W3C Markup */ 
-background-image: linear-gradient(to right, #000000 0%, #FFFFFF 50%, #000000 100%);
-}
-
-.grey-black {
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100;Grey+Black+3D */
-background: rgb(181,189,200); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
-
-}
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;    
+}  
